@@ -14,7 +14,7 @@
     "lint-scss-fix": "stylelint src/**/*.scss --fix",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "clean": "rm -rf dist && mkdir -p dist/{images,styles,scripts}",
+    "clean": "rm -rf dist && mkdir -p dist/images && mkdir -p dist/scripts && mkdir -p dist/styles",
     "shell": "scripty",
     "shell:images": "scripty",
     "shell:scripts": "scripty",
