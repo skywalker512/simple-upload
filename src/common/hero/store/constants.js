@@ -1,0 +1,1 @@
+export const VIDEO_LOAD = 'common/hero/VIDEO_LOAD'
