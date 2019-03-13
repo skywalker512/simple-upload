@@ -17,15 +17,6 @@ import {
 
 import { PointVideoSource, WaterVideoSource } from './pure/video'
 export default class Hero extends Component {
-  // 目前只能使用这样加入同样的 元素
-  getMultipleVideo() {
-    const MultipleVideoList = []
-    for (let index = 0; index < 4; index++) {
-      // 在这里因为 index 不会改变，所以使用此来确定 key 值
-      MultipleVideoList.push(<VideoContent key={index}><WaterVideoSource /></VideoContent>)
-    }
-    return MultipleVideoList
-  }
   
   render() {
     return (
@@ -53,7 +44,12 @@ export default class Hero extends Component {
             </CSSTransition>
           </SingleVideo>
           <MultipleVideo>
-            {this.getMultipleVideo()}
+            {()=>{
+              for (let index = 0; index < 4; index++) {
+                // 在这里因为 index 不会改变，所以使用此来确定 key 值
+                return <VideoContent key={index}><WaterVideoSource /></VideoContent>
+              }
+            }}
           </MultipleVideo>
         </Video>
       </HeroWrapper>
