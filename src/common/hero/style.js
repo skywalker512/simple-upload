@@ -51,7 +51,7 @@ export const Video = styled.div`
   position: absolute;
 `
 export const VideoContent = styled.video.attrs({
-  autoPlay: 'autoplay',
+  // autoPlay: 'autoplay',
   loop: 'loop',
   muted: true,
 })`
