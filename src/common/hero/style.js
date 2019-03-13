@@ -53,6 +53,7 @@ export const Video = styled.div`
 export const VideoContent = styled.video.attrs({
   autoPlay: 'autoplay',
   loop: 'loop',
+  muted: true,
 })`
 
 `

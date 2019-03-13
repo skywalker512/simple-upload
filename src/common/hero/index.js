@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CSSTransition } from 'react-transition-group'
 import { 
   HeroWrapper, 
   Title, 
@@ -46,7 +47,9 @@ export default class Hero extends Component {
         </Content>
         <Video>
           <SingleVideo>
-            <VideoContent><PointVideoSource /></VideoContent>
+            <CSSTransition>
+              <VideoContent><PointVideoSource /></VideoContent>
+            </CSSTransition>
           </SingleVideo>
           <MultipleVideo>
             {this.getMultipleVideo()}
