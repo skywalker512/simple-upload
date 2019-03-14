@@ -51,7 +51,7 @@ export const Video = styled.div`
   position: absolute;
 `
 export const VideoContent = styled.video.attrs({
-  // autoPlay: 'autoplay',
+  autoPlay: 'autoplay',
   loop: 'loop',
   muted: true,
 })`
@@ -62,7 +62,7 @@ export const SingleVideo = styled.div`
   top: 0;
   right: 0;
   video {
-    opacity: .5;
+    opacity: 0;
     width: 1280px;
     z-index: 0;
     mix-blend-mode: screen;
@@ -76,6 +76,14 @@ export const SingleVideo = styled.div`
     background: linear-gradient(180deg,rgba(40,42,46,0),#1e2430 95%);
     z-index: 1;
     content: "";
+  }
+
+  .video-enter {
+    transition: opacity 3s;
+    opacity: .5;
+  }
+  .video-enter-done {
+    opacity: .5;
   }
 `
 export const MultipleVideo = styled.div`

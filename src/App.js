@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { GlobalStyle } from './style';
+import { Provider } from 'react-redux'
+import store from './store'
 
 import Hero from '@/common/hero';
 
 class App extends Component {
   render() {
     return (
-      <Fragment>      
+      <Fragment>
         <GlobalStyle />
-        <Hero />
+        <Provider store={store}>
+          <Hero />
+        </Provider>
       </Fragment>
     );
   }
