@@ -20,16 +20,6 @@ import {
 
 import { PointVideoSource, WaterVideoSource } from './pure/video'
 class Hero extends Component {
-  // 因为 react 不推荐在 render 里写函数 所以移到外面
-  getMultipleVideo () {
-    const MultipleVideoList = []
-    for (let index = 0; index < 4; index++) {
-      // 在这里因为 index 不会改变，所以使用此来确定 key 值
-      MultipleVideoList.push(<VideoContent key={index}><WaterVideoSource /></VideoContent>)
-    }
-    return MultipleVideoList
-  }
-
   render() {
     // 调用方法
     const { handleVideoLoad } = this.props
@@ -67,7 +57,10 @@ class Hero extends Component {
             </CSSTransition>
           </SingleVideo>
           <MultipleVideo>
-            {this.getMultipleVideo()}
+            <VideoContent><WaterVideoSource /></VideoContent>
+            <VideoContent><WaterVideoSource /></VideoContent>
+            <VideoContent><WaterVideoSource /></VideoContent>
+            <VideoContent><WaterVideoSource /></VideoContent>
           </MultipleVideo>
         </Video>
       </HeroWrapper>
