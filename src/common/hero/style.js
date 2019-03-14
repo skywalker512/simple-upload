@@ -105,7 +105,8 @@ export const MultipleVideo = styled.div`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   width: 1400px;
-  height: 800px;
+  height: 100%;
   z-index: 0;
 `
