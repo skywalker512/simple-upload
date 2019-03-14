@@ -42,8 +42,20 @@ export const Label = styled.label.attrs({
   htmlFor: inputId
 })``
 
-export const UploadWrapper = styled.div``
-export const UploadBox = styled.div``
+export const UploadWrapper = styled.div`
+  height: 76px;
+  width: 288px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgba(185, 191, 204, 0.2);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const UploadBox = styled.div`
+  font-size: 14px;
+`
 
 export const Video = styled.div`
   height: 100%;
