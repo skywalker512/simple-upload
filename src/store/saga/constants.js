@@ -1,0 +1,1 @@
+export const FILE_UPLOAD = 'saga/FILE_UPLOAD'

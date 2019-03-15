@@ -9,6 +9,7 @@
       "@/common/*": ["./src/common/*"],
       "@/statics/*": ["./src/statics/*"],
       "@/utils/*": ["./src/utils/*"],
+      "@/store/*": ["./src/store/*"],
     }
   }
 }

@@ -9,6 +9,7 @@ module.exports = function override(config, env) {
     '@/common': path.resolve(__dirname, `${paths.appSrc}/common/`),
     '@/statics': path.resolve(__dirname, `${paths.appSrc}/statics/`),
     '@/utils': path.resolve(__dirname, `${paths.appSrc}/utils/`),
+    '@/store': path.resolve(__dirname, `${paths.appSrc}/store/`),
   }
 
   config.resolve.alias = {...config.resolve.alias, ...alias}

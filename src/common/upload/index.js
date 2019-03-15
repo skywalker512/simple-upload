@@ -49,6 +49,7 @@ const mapDispathToProps = (dispatch) => {
           
           const indata = [fileObj]
           dispatch(action.fileChange(indata))
+          dispatch(action.fileUpload())
       })
     },
 	}
