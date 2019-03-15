@@ -3,17 +3,14 @@ import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import { action } from './store'
 
-import readFileAsync from '@/utils/readfile'
+
+import Upload from '@/common/upload'
 
 import { 
   HeroWrapper, 
-  Title, 
-  Input, 
+  Title,
   Discrible, 
   Content, 
-  Label, 
-  UploadBox, 
-  UploadWrapper,
   MultipleVideo,
   SingleVideo,
   VideoContent,
@@ -24,7 +21,7 @@ import { PointVideoSource, WaterVideoSource } from './pure/video'
 class Hero extends Component {
   render() {
     // 调用方法
-    const { handleVideoLoad, handleFileChange } = this.props
+    const { handleVideoLoad } = this.props
     // 传入变量
     const { videoLoad } = this.props
     return (
@@ -36,14 +33,7 @@ class Hero extends Component {
           <Discrible>
             You can drop the file or click the button to uplaod file
           </Discrible>
-          <Input onChange={handleFileChange}/>
-          <Label>
-            <UploadWrapper>
-              <UploadBox>
-                Drag & Drop your files or Browse
-              </UploadBox>
-            </UploadWrapper>
-          </Label>
+          <Upload />
         </Content>
         <Video>
           <SingleVideo>
@@ -83,15 +73,6 @@ const mapDispathToProps = (dispatch) => {
       // action.videoLoad() 返回一个对象
       dispatch(action.videoLoad())
     },
-    
-    handleFileChange(e) {
-      // 转换成数组
-      Array.from(e.target.files).forEach(async element => {
-          console.log(URL.createObjectURL(element), element.name, element);
-          const res = await readFileAsync(element)
-          console.log(res)
-      })
-    }
 	}
 }
 
