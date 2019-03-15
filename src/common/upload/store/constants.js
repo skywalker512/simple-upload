@@ -1,0 +1,1 @@
+export const FILE_CHANGE = 'common/hero/FILE_CHANGE'

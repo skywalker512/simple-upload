@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { action } from './store'
 
 import readFileAsync from '@/utils/readfile'
 
@@ -28,6 +29,12 @@ class Upload extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => {
+	return {
+    file: state.getIn(['upload', 'file'])
+	}
+}
+
 const mapDispathToProps = (dispatch) => {
 	return {
     handleFileChange(e) {
@@ -35,10 +42,16 @@ const mapDispathToProps = (dispatch) => {
       Array.from(e.target.files).forEach(async element => {
           console.log(URL.createObjectURL(element), element.name, element);
           const res = await readFileAsync(element)
-          console.log(res)
+          const fileObj = {
+            filename: element.name,
+            filedata: res
+          }
+          
+          const indata = [fileObj]
+          dispatch(action.fileChange(indata))
       })
     },
 	}
 }
 
-export default connect(null, mapDispathToProps)(Upload)
+export default connect(mapStateToProps, mapDispathToProps)(Upload)
