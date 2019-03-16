@@ -77,4 +77,15 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  /* 来自于 js 的坑这个会生成 js, 所以必须写 js 的格式 */
+  .icon-refresh:before {
+    content: "\ue900";
+  }
+  .icon-remove:before {
+    content: "\ue901";
+  }
+  .icon-upload:before {
+    content: "\ue902";
+  }
+
 `

@@ -43,10 +43,9 @@ export const FileBox = styled.div`
   padding: 9px;
 `
 
-export const CloseButton = styled(Button)`
-  &::before {
-    content: "\e901";
-  }
+export const CloseButton = styled(Button).attrs({
+  className: 'icon-remove'
+})`
 `
 export const FileInfo = styled.div`
   /* 放出剩余空间 */
