@@ -7,6 +7,7 @@ export const fileChange = (value) => ({
   value,
 })
 
-export const fileUpload = () => ({
-  type: FILE_UPLOAD
+export const fileUpload = (value) => ({
+  type: FILE_UPLOAD,
+  value,
 })
