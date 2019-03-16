@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { action } from '../store'
 
@@ -18,8 +18,8 @@ class UploadBoxCom extends PureComponent {
       <FileBox>
         <CloseButton />
         <FileInfo>
-          <FileTitle></FileTitle>
-          <FileSize></FileSize>
+          <FileTitle>kkkkkkk.png</FileTitle>
+          <FileSize>89 kb</FileSize>
         </FileInfo>
         <UploadButton />
       </FileBox>

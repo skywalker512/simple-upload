@@ -4,6 +4,26 @@ const inputId = 'hero-upload'
 const Button = styled.div`
   height: 30px;
   width: 30px;
+  &::before {
+    /* 让他可以定义宽高 */
+    display: block;
+    width: 27px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    background-color: #2c313f;
+    border-radius: 50%;
+    font-size: 22px;
+    color: #fff;
+    transition: border-color 0.2s;
+    border: 1.5px solid #767b8b;
+    cursor: pointer;
+  }
+  &:hover {
+    &::before {
+      border-color: #fff;
+    }
+  }
 `
 
 export const Input = styled.input.attrs({
@@ -46,15 +66,23 @@ export const FileBox = styled.div`
 export const CloseButton = styled(Button).attrs({
   className: 'icon-remove'
 })`
+
 `
 export const FileInfo = styled.div`
   /* 放出剩余空间 */
   flex-grow: 1;
+  padding: 0 8px;
 `
 export const FileTitle = styled.div`
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
 `
 export const FileSize = styled.div`
+  font-size: 12px;
 `
-export const UploadButton = styled(Button)`
+export const UploadButton = styled(Button).attrs({
+  className: 'icon-upload'
+})`
   justify-items: flex-end;
 `
