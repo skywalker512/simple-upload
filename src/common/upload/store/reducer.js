@@ -8,8 +8,7 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
   switch (action.type) {
     case constants.FILE_CHANGE:
-      console.log(action.value)
-      return state.set('file', action.value)
+      return state.set('file', fromJS(action.value))
     default:
       return state
   }

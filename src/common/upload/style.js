@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
 const inputId = 'hero-upload'
+const Button = styled.div`
+  height: 30px;
+  width: 30px;
+`
+
 export const Input = styled.input.attrs({
   id: inputId,
   type: 'file',
@@ -24,6 +29,33 @@ export const UploadWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
-export const UploadBox = styled.div`
+export const UploadTips = styled.div`
   font-size: 14px;
+`
+
+export const FileBox = styled.div`
+  box-sizing: border-box;
+  width: 256px;
+  height: 48px;
+  background-color: #767b8b;
+  border-radius: 4px;
+  display: flex;
+  padding: 9px;
+`
+
+export const CloseButton = styled(Button)`
+  &::before {
+    content: "\e901";
+  }
+`
+export const FileInfo = styled.div`
+  /* 放出剩余空间 */
+  flex-grow: 1;
+`
+export const FileTitle = styled.div`
+`
+export const FileSize = styled.div`
+`
+export const UploadButton = styled(Button)`
+  justify-items: flex-end;
 `

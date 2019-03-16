@@ -4,10 +4,7 @@ import * as constants from './constants'
 
 async function putFile (action) {
   const { filename, filedata } = action.value[0]
-  console.log(action)
   const a = await ajax('POST', '/upload', {filename, filedata})
-  console.log(action)
-  console.log(a)
 }
 
 function* watchFileUpload () {
