@@ -9,23 +9,28 @@ import {
   FileTitle,
   FileSize,
   UploadButton,
+  UndoButton,
 } from '../style'
 
 class UploadBoxCom extends PureComponent {
   render() {
-    const { handleFileRemove, handleFileUpload } = this.props
+    const { handleFileRemove, handleFileUpload, handleFileUndo } = this.props
     const { file } = this.props
     return (
       <Fragment>
         {
           file.map((res, index) => (
             <FileBox key={res.get('filename')}>
-              <CloseButton onClick={()=>handleFileRemove(index)} />
+              {
+                res.get('isUploaded') ? null : <CloseButton onClick={()=>handleFileRemove(index)} />
+              }
               <FileInfo>
                 <FileTitle>{res.get('filename')}</FileTitle>
-                <FileSize>89 kb{index}</FileSize>
+                <FileSize>89 kb</FileSize>
               </FileInfo>
-              <UploadButton onClick={()=>handleFileUpload(res, index)}/>
+              {
+                res.get('isUploaded') ? <UndoButton onClick={()=>handleFileUndo(index)}/> : <UploadButton onClick={()=>handleFileUpload(res, index)}/>
+              }
             </FileBox>
           ))
         }
@@ -42,11 +47,14 @@ const mapStateToProps = (state) => {
 
 const mapDispathToProps = (dispatch) => {
   return {
-    handleFileRemove(index) {
-      dispatch(action.fileRomve(index))
+    handleFileRemove(...args) {
+      dispatch(action.fileRomve(...args))
     },
     handleFileUpload(...args) {
       dispatch(action.fileUpload(...args))
+    },
+    handleFileUndo(...args) {
+      dispatch(action.fileUndo(...args))
     },
   }
 }

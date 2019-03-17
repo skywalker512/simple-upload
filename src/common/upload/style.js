@@ -91,3 +91,9 @@ export const UploadButton = styled(Button).attrs({
 })`
   justify-items: flex-end;
 `
+
+export const UndoButton = styled(Button).attrs({
+  className: 'icon-undo'
+})`
+  justify-items: flex-end;
+`

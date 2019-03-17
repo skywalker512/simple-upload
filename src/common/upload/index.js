@@ -59,7 +59,8 @@ const mapDispathToProps = (dispatch) => {
         const res = await readFileAsync(element)
         const fileObj = fromJS({
           filename: element.name,
-          filedata: res
+          filedata: res,
+          isUploaded: false,
         })
         dispatch(action.fileChange(fileObj))
       })

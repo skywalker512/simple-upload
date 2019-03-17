@@ -31,3 +31,9 @@ export const fileUpload = (res, index) => ({
   index,
 })
 
+
+export const fileUndo = (index) => ({
+  type: constants.FILE_UNDO,
+  index,
+})
+
