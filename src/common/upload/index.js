@@ -16,7 +16,14 @@ import {
 } from './style'
 
 class Upload extends PureComponent {
-
+  constructor(props) {
+    super(props)
+    this.handleDrag = this.handleDrag.bind(this)
+  }
+  handleDrag(e) {
+    e.stopPropagation()
+    e.preventDefault()
+  }
   render() {
     const { handleFileChange, handleFileDrop } = this.props
     const { file } = this.props
@@ -34,6 +41,15 @@ class Upload extends PureComponent {
       </Fragment>
     )
   }
+  componentDidMount() {
+    window.addEventListener('dragover', this.handleDrag)
+    window.addEventListener('drop', this.handleDrag)
+	}
+
+	componentWillUnmount() {
+    window.removeEventListener('dragover', this.handleDrag)
+    window.removeEventListener('drop', this.handleDrag)
+	}
 }
 
 const mapStateToProps = (state) => {
