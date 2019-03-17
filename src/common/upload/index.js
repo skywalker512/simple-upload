@@ -18,30 +18,23 @@ class Upload extends PureComponent {
   render() {
     const { handleFileChange } = this.props
     const { file } = this.props
-    if (file.size === 0) {
-      return (
-        <Fragment>
-          <Input onChange={handleFileChange} />
-          <Label>
-            <UploadWrapper>
-              <UploadTips>
-                Drag & Drop your files or Browse
-              </UploadTips>
-            </UploadWrapper>
-          </Label>
-        </Fragment>
-        // <UploadWrapper>
-        //   <UploadBoxCom />
-        // </UploadWrapper>
-      )
-    } else {
-      return (
-        <UploadWrapper>
+    return (
+      <Fragment>
+        <Input onChange={handleFileChange} />
+        <UploadWrapper _height={`${(file.size)*62+76}px`}>
           <UploadBoxCom />
+          <Label>
+            <UploadTips>
+              Drag & Drop your files or Browse
+            </UploadTips>
+          </Label>
+          
         </UploadWrapper>
-      )
-    }
-
+      </Fragment>
+      // <UploadWrapper>
+      //   <UploadBoxCom />
+      // </UploadWrapper>
+    )
   }
 }
 
@@ -64,6 +57,7 @@ const mapDispathToProps = (dispatch) => {
         })
         dispatch(action.fileChange(fileObj))
       })
+      e.target.value = ''
     },
   }
 }

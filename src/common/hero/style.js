@@ -8,12 +8,12 @@ export const HeroWrapper = styled.section`
   background-color: #1e2430;
   display: flex;
   justify-content: center;
-  align-items: center;
 `
 
 export const Content = styled.div`
   z-index: 100;
   display: flex;
+  margin-top: 200px;
   flex-direction: column;
   align-items: center;
 `

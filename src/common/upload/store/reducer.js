@@ -14,7 +14,7 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
   switch (action.type) {
     case constants.FILE_CHANGE:
-      return state.setIn(['file', -1], action.value)
+      return state.setIn(['file', state.get('file').size], action.value)
     case constants.FILE_REMOVE:
       return state.deleteIn(['file', action.index])
     case constants.START_UPLOAD:
