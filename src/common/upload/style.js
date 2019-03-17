@@ -92,7 +92,8 @@ export const FileBox = styled.div`
   box-sizing: border-box;
   width: 256px;
   height: 48px;
-  background-color: #767b8b;
+  background-color: ${props => props._isUploaded ? '#767b8b': '#22a061'};
+  transition: background-color 0.4s;
   border-radius: 4px;
   display: flex;
   padding: 9px;

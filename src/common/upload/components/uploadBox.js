@@ -26,7 +26,7 @@ class UploadBoxCom extends PureComponent {
               timeout={400}
               classNames="filebox"
             >
-              <FileBox>
+              <FileBox _isUploaded={!res.get('isUploaded')}>
                 <CSSTransition
                   timeout={400}
                   classNames="closebutton"
