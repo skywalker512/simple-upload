@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { action } from '../store'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
