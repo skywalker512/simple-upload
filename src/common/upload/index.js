@@ -16,15 +16,16 @@ import {
 } from './style'
 
 class Upload extends PureComponent {
+
   render() {
-    const { handleFileChange } = this.props
+    const { handleFileChange, handleFileDrop } = this.props
     const { file } = this.props
     return (
       <Fragment>
         <Input onChange={handleFileChange} />
         <UploadWrapper _height={`${(file.size)*62+76}px`}>
           <UploadBoxCom />
-          <Label>
+          <Label onDrop={handleFileDrop}>
             <UploadTips>
               Drag & Drop your files or Browse
             </UploadTips>
@@ -57,6 +58,10 @@ const mapDispathToProps = (dispatch) => {
         dispatch(action.fileChange(fileObj))
       })
     },
+    handleFileDrop(e) {
+      e.preventDefault()
+      console.log(e.dataTransfer.files)
+    }
   }
 }
 

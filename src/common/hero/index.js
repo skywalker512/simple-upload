@@ -19,13 +19,22 @@ import {
 
 import { PointVideoSource, WaterVideoSource } from './pure/video'
 class Hero extends Component {
+  constructor(props) {
+    super(props)
+    this.handleDrag = this.handleDrag.bind(this)
+  }
+  // 应该不用写在 生命周期函数里面, 但如果是 listen 的 window 就需要
+  handleDrag(e) {
+    e.stopPropagation()
+    e.preventDefault()
+  }
   render() {
     // 调用方法
     const { handleVideoLoad } = this.props
     // 传入变量
     const { videoLoad } = this.props
     return (
-      <HeroWrapper>
+      <HeroWrapper onDragOver={this.handleDrag} onDrop={this.handleDrag}>
         <Content>
           <Title>
             Upload something simply
