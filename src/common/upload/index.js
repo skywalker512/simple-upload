@@ -28,7 +28,6 @@ class Upload extends PureComponent {
               Drag & Drop your files or Browse
             </UploadTips>
           </Label>
-          
         </UploadWrapper>
       </Fragment>
       // <UploadWrapper>

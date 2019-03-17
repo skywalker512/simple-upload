@@ -39,7 +39,7 @@ export const Label = styled.label.attrs({
 })``
 
 export const UploadWrapper = styled.div`
-  transition: height 0.3s;
+  transition: height 0.4s;
   height: ${props => props._height};
   border-width: 2px;
   border-style: solid;
@@ -49,6 +49,34 @@ export const UploadWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
+  .filebox-enter {
+    height: 0;
+    margin: 0 16px;
+    padding: 0;
+    opacity: 0.01;
+  }
+  .filebox-enter-active {
+    height: 48px;
+    padding: 9px;
+    margin: 14px 16px 0 16px;
+    opacity: 1;
+    transition: all 0.4s;
+  }
+  .filebox-exit {
+    height: 48px;
+    padding: 9px;
+    margin: 14px 16px 0 16px;
+    opacity: 1;
+  }
+  .filebox-exit-active {
+    height: 0;
+    margin: 0 16px;
+    padding: 0;
+    height: 0;
+    opacity: 0.01;
+    transition: all 0.4s;
+  }
 `
 export const UploadTips = styled.div`
   width: 256px;

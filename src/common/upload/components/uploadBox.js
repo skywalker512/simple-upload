@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { action } from '../store'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import {
   FileBox,
@@ -17,24 +18,31 @@ class UploadBoxCom extends PureComponent {
     const { handleFileRemove, handleFileUpload, handleFileUndo } = this.props
     const { file } = this.props
     return (
-      <Fragment>
+      <TransitionGroup>
         {
           file.map((res, index) => (
-            <FileBox key={res.get('filename')}>
-              {
-                res.get('isUploaded') ? null : <CloseButton onClick={()=>handleFileRemove(index)} />
-              }
-              <FileInfo>
-                <FileTitle>{res.get('filename')}</FileTitle>
-                <FileSize>89 kb</FileSize>
-              </FileInfo>
-              {
-                res.get('isUploaded') ? <UndoButton onClick={()=>handleFileUndo(index)}/> : <UploadButton onClick={()=>handleFileUpload(res, index)}/>
-              }
-            </FileBox>
+            <CSSTransition
+              key={res.get('filename')}
+              timeout={900}
+              classNames="filebox"
+            >
+              <FileBox>
+                {
+                  res.get('isUploaded') ? null : <CloseButton onClick={() => handleFileRemove(index)} />
+                }
+                <FileInfo>
+                  <FileTitle>{res.get('filename')}</FileTitle>
+                  <FileSize>89 kb</FileSize>
+                </FileInfo>
+                {
+                  res.get('isUploaded') ? <UndoButton onClick={() => handleFileUndo(index)} /> : <UploadButton onClick={() => handleFileUpload(res, index)} />
+                }
+              </FileBox>
+            </CSSTransition>
+
           ))
         }
-      </Fragment>
+      </TransitionGroup>
     )
   }
 }
