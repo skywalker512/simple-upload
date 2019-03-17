@@ -56,7 +56,6 @@ const mapDispathToProps = (dispatch) => {
         })
         dispatch(action.fileChange(fileObj))
       })
-      e.target.value = ''
     },
   }
 }
