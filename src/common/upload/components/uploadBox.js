@@ -23,7 +23,7 @@ class UploadBoxCom extends PureComponent {
           file.map((res, index) => (
             <CSSTransition
               key={res.get('filename')}
-              timeout={900}
+              timeout={400}
               classNames="filebox"
             >
               <FileBox>
