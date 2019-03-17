@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { action } from './store'
+import { fromJS } from 'immutable'
 
 import readFileAsync from '@/utils/readfile'
 
@@ -56,12 +57,11 @@ const mapDispathToProps = (dispatch) => {
       // 转换成数组
       Array.from(e.target.files).forEach(async element => {
         const res = await readFileAsync(element)
-        const fileObj = {
+        const fileObj = fromJS({
           filename: element.name,
           filedata: res
-        }
-        const indata = [fileObj]
-        dispatch(action.fileChange(indata))
+        })
+        dispatch(action.fileChange(fileObj))
       })
     },
   }
