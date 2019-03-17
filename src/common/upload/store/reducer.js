@@ -8,7 +8,7 @@ const defaultState = fromJS({
 // file: {
 //   filename,
 //   filedata
-//   isFetching
+//   isUploaded
 // }
 
 export default (state = defaultState, action) => {
@@ -17,10 +17,10 @@ export default (state = defaultState, action) => {
       return state.setIn(['file', -1], action.value)
     case constants.FILE_REMOVE:
       return state.deleteIn(['file', action.index])
-    // case constants.REQUEST_POST:
-    //   return state.set('file', state.get(''))
-    // case constants.RECEIVE_POST:
-    //   return state
+    case constants.START_UPLOAD:
+      return state.setIn(['file', action.index, 'isUploaded'], false)
+    case constants.FINISH_UPLOAD:
+      return state.setIn(['file', action.index, 'isUploaded'], true)
     default:
       return state
   }

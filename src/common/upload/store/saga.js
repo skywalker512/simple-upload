@@ -1,14 +1,13 @@
-import { takeEvery, all, put, fork } from 'redux-saga/effects'
+import { takeEvery, all, put, fork, call } from 'redux-saga/effects'
 import ajax from '@/utils/ajax'
 import * as constants from './constants'
+import * as actionCreater  from './action'
 
-async function putFile (action) {
+function* putFile (action) {
   try {
-    // 这里可以使用 saga 的 api: call(ajax, 'POST', '/upload', action.value.toJS())
-    // call 相当于同步命令
-    // 但是 await 写起来方便一些
-    const a = await ajax('POST', '/upload', action.res.toJS())
-    console.log(a)
+    yield put(actionCreater.startUpload(action.index))
+    yield call(ajax, 'POST', '/upload', action.res.toJS())
+    yield put(actionCreater.finishUpload(action.index))
     // put(constants.FILE_UPLOAD)
   } catch (error) {
     console.log(error)

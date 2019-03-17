@@ -13,9 +13,21 @@ export const fileRomve = (index) => ({
 })
 
 
+export const startUpload = (index) => ({
+  type: constants.START_UPLOAD,
+  index,
+})
+
+export const finishUpload = (index) => ({
+  type: constants.FINISH_UPLOAD,
+  index,
+})
+
+
 // 发往 saga 的
-export const fileUpload = (res) => ({
+export const fileUpload = (res, index) => ({
   type: constants.FILE_UPLOAD,
   res,
+  index,
 })
 

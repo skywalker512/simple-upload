@@ -25,7 +25,7 @@ class UploadBoxCom extends PureComponent {
                 <FileTitle>{res.get('filename')}</FileTitle>
                 <FileSize>89 kb{index}</FileSize>
               </FileInfo>
-              <UploadButton onClick={()=>handleFileUpload(res)}/>
+              <UploadButton onClick={()=>handleFileUpload(res, index)}/>
             </FileBox>
           ))
         }
@@ -45,8 +45,8 @@ const mapDispathToProps = (dispatch) => {
     handleFileRemove(index) {
       dispatch(action.fileRomve(index))
     },
-    handleFileUpload(res) {
-      dispatch(action.fileUpload(res))
+    handleFileUpload(...args) {
+      dispatch(action.fileUpload(...args))
     },
   }
 }
