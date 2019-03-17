@@ -32,7 +32,7 @@ class UploadBoxCom extends PureComponent {
                 }
                 <FileInfo>
                   <FileTitle>{res.get('filename')}</FileTitle>
-                  <FileSize>89 kb</FileSize>
+                  <FileSize>{res.get('filesize')}</FileSize>
                 </FileInfo>
                 {
                   res.get('isUploaded') ? <UndoButton onClick={() => handleFileUndo(index)} /> : <UploadButton onClick={() => handleFileUpload(res, index)} />

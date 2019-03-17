@@ -4,6 +4,7 @@ import { action } from './store'
 import { fromJS } from 'immutable'
 
 import readFileAsync from '@/utils/readfile'
+import bytesToSize from '@/utils/bytesToSize'
 
 import UploadBoxCom from './components/uploadBox'
 
@@ -45,11 +46,13 @@ const mapDispathToProps = (dispatch) => {
     handleFileChange(e) {
       // 转换成数组
       Array.from(e.target.files).forEach(async element => {
+        if (element.size > 20971520) return // 限制 20 mb
         const res = await readFileAsync(element)
         const fileObj = fromJS({
           filename: element.name,
           filedata: res,
           isUploaded: false,
+          filesize: bytesToSize(element.size),
         })
         dispatch(action.fileChange(fileObj))
       })
