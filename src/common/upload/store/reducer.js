@@ -21,6 +21,8 @@ export default (state = defaultState, action) => {
       return state.setIn(['file', action.index, 'isUploaded'], false)
     case constants.FINISH_UPLOAD:
       return state.setIn(['file', action.index, 'isUploaded'], true)
+    case constants.FINISH_FILE_UNDO:
+      return state.setIn(['file', action.index, 'isUploaded'], false)
     default:
       return state
   }

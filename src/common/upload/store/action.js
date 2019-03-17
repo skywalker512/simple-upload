@@ -23,6 +23,11 @@ export const finishUpload = (index) => ({
   index,
 })
 
+export const finishFileUndo = (index) => ({
+  type: constants.FINISH_FILE_UNDO,
+  index,
+})
+
 
 // 发往 saga 的
 export const fileUpload = (res, index) => ({
