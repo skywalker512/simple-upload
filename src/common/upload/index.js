@@ -19,19 +19,19 @@ class Upload extends PureComponent {
     const { file } = this.props
     if (file.size === 0) {
       return (
-        // <Fragment>
-        //   <Input onChange={handleFileChange} />
-        //   <Label>
-        //     <UploadWrapper>
-        //       <UploadTips>
-        //         Drag & Drop your files or Browse
-        //       </UploadTips>
-        //     </UploadWrapper>
-        //   </Label>
-        // </Fragment>
-        <UploadWrapper>
-          <UploadBoxCom />
-        </UploadWrapper>
+        <Fragment>
+          <Input onChange={handleFileChange} />
+          <Label>
+            <UploadWrapper>
+              <UploadTips>
+                Drag & Drop your files or Browse
+              </UploadTips>
+            </UploadWrapper>
+          </Label>
+        </Fragment>
+        // <UploadWrapper>
+        //   <UploadBoxCom />
+        // </UploadWrapper>
       )
     } else {
       return (

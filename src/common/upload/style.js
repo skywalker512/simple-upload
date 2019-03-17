@@ -77,6 +77,11 @@ export const FileTitle = styled.div`
   font-size: 12px;
   line-height: 16px;
   color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1;
+  max-height: 16px;
+  max-width: 162px;
 `
 export const FileSize = styled.div`
   font-size: 12px;

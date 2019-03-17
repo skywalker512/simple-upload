@@ -1,5 +1,4 @@
 import * as constants from './constants'
-import { FILE_UPLOAD } from '@/store/saga/constants'
 
 // ({}) 使用箭头函数 返回一个对象 
 export const fileChange = (value) => ({
@@ -7,7 +6,15 @@ export const fileChange = (value) => ({
   value,
 })
 
+
+export const fileRomve = () => ({
+  type: constants.FILE_REMOVE,
+})
+
+
+// 发往 saga 的
 export const fileUpload = (value) => ({
-  type: FILE_UPLOAD,
+  type: constants.FILE_UPLOAD,
   value,
 })
+
