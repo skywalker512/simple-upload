@@ -30,9 +30,6 @@ class Upload extends PureComponent {
           </Label>
         </UploadWrapper>
       </Fragment>
-      // <UploadWrapper>
-      //   <UploadBoxCom />
-      // </UploadWrapper>
     )
   }
 }
