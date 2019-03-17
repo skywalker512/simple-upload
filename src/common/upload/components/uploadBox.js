@@ -27,9 +27,13 @@ class UploadBoxCom extends PureComponent {
               classNames="filebox"
             >
               <FileBox>
-                {
-                  res.get('isUploaded') ? null : <CloseButton onClick={() => handleFileRemove(index)} />
-                }
+                <CSSTransition
+                  timeout={400}
+                  classNames="closebutton"
+                  in={!res.get('isUploaded')}
+                >
+                  <CloseButton onClick={() => handleFileRemove(index)} />
+                </CSSTransition>
                 <FileInfo>
                   <FileTitle>{res.get('filename')}</FileTitle>
                   <FileSize>{res.get('filesize')}</FileSize>

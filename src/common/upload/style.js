@@ -101,7 +101,31 @@ export const FileBox = styled.div`
 export const CloseButton = styled(Button).attrs({
   className: 'icon-remove'
 })`
-
+  &.closebutton-enter {
+    height: 0;
+    width: 0;
+    opacity: 0.01;
+  }
+  &.closebutton-enter-active {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &.closebutton-exit {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+  }
+  &.closebutton-exit-active {
+    height: 0;
+    width: 0;
+    opacity: 0.01;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &.closebutton-exit-done {
+    display: none;
+  }
 `
 export const FileInfo = styled.div`
   /* 放出剩余空间 */
