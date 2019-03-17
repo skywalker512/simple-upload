@@ -18,12 +18,12 @@ class UploadBoxCom extends PureComponent {
     return (
       <Fragment>
         {
-          file.map(res => (
+          file.map((res, index) => (
             <FileBox key={res.get('filename')}>
-              <CloseButton onClick={handleFileRemove} />
+              <CloseButton onClick={()=>handleFileRemove(index)} />
               <FileInfo>
                 <FileTitle>{res.get('filename')}</FileTitle>
-                <FileSize>89 kb</FileSize>
+                <FileSize>89 kb{index}</FileSize>
               </FileInfo>
               <UploadButton onClick={()=>handleFileUpload(res)}/>
             </FileBox>
@@ -42,8 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispathToProps = (dispatch) => {
   return {
-    handleFileRemove() {
-      dispatch(action.fileRomve())
+    handleFileRemove(index) {
+      dispatch(action.fileRomve(index))
     },
     handleFileUpload(res) {
       dispatch(action.fileUpload(res))

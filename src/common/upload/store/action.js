@@ -7,14 +7,15 @@ export const fileChange = (value) => ({
 })
 
 
-export const fileRomve = () => ({
+export const fileRomve = (index) => ({
   type: constants.FILE_REMOVE,
+  index,
 })
 
 
 // 发往 saga 的
-export const fileUpload = (value) => ({
+export const fileUpload = (res) => ({
   type: constants.FILE_UPLOAD,
-  value,
+  res,
 })
 
