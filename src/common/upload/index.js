@@ -16,11 +16,8 @@ import {
 } from './style'
 
 class Upload extends PureComponent {
-  constructor(props) {
-    super(props)
-    this.handleDrag = this.handleDrag.bind(this)
-  }
-  handleDrag(e) {
+  //  public class fields 语法
+  handleDrag = e => {
     e.stopPropagation()
     e.preventDefault()
   }
