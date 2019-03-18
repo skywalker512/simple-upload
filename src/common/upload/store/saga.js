@@ -1,25 +1,24 @@
 import { takeLeading, all, put, fork, call, take } from 'redux-saga/effects'
-import { eventChannel} from 'redux-saga'
+import { eventChannel, END } from 'redux-saga'
 import ajax from '@/utils/ajax'
 import * as constants from './constants'
 import * as actionCreater from './action'
 
-// 这里的代码实现的比较不好, saga 的 put 只能在 yield 中执行
+// 修改函数, 相当于 saga 提供了一个 同步方案, 通过 emitter 来控制状态
 function createAsyncTaskRunnerForUpload(action) {
-  let emit;
-  const chan = eventChannel(emitter => {
-    emit = emitter
+  return eventChannel(emitter => {
+    ajax('POST', '/upload', action.res.toJS(), function (e) {
+      const percent = Math.floor((e.loaded / e.total) * 100)
+      emitter({ percent, action })
+      if (percent === 100) {
+        emitter(END)
+      }
+    })
     // subscriber 必须返回一个 unsubscribe 函数
     // unsubscribe 将在 saga 调用 `channel.close` 或者 emit(END) 时被调用, END 来自于 import { END } from 'redux-saga'
-    // 这里因为后面使用 fork 来执行函数, 并且 eventChannel 没有任何其他消耗时间的操作, 所以这里 直接返回一个空函数
+    // 这里因为 eventChannel 没有任何其他消耗时间的操作, 所以这里 直接返回一个空函数
     return () => {}
   })
-  // 将 异步请求分离, 不放在 eventChannel 里
-  const promise = ajax('POST', '/upload', action.res.toJS(), function (e) {
-    const percent = Math.floor((e.loaded / e.total) * 100)
-    emit({ percent, action });
-  })
-  return {promise, chan};
 }
 
 
@@ -33,32 +32,15 @@ function* watchOnProgress(chan) {
 
 // call 可以返回一个 Generator 函数, 也可以是一个返回 Promise 或任意其它值的普通函数, 所以这里可以使用 await
 function* fileUploader(action) {
-  // call(ajax, 'POST', '/upload', action.res.toJS()).the
-  // await ajax('POST', '/upload', action.res.toJS(), function* (e) {
-  //   const percent = Math.floor((e.loaded / e.total) * 100)
-  //   console.log(2)
-  //   yield put(actionCreater.uploadProgress(action.index, percent))
-  // })
-  const {promise, chan} = createAsyncTaskRunnerForUpload(action)
-  yield fork(watchOnProgress, chan);
   try {
+    const chan = createAsyncTaskRunnerForUpload(action)
     yield put(actionCreater.startUpload(action.index))
-    yield call(() => promise);
+    yield call(watchOnProgress, chan);
     yield put(actionCreater.finishUpload(action.index))
   } catch (err) {
     console.log(err)
   }
 }
-
-// function* fileUpload(action) {
-//   try {
-//     yield put(actionCreater.startUpload(action.index))
-//     yield call(fileUploader, action)
-//     yield put(actionCreater.finishUpload(action.index))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
 
 function* fileUndo(action) {
   try {
