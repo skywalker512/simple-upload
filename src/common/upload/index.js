@@ -68,13 +68,14 @@ const mapDispathToProps = (dispatch) => {
       e.preventDefault()
       const files = e.target.files || e.dataTransfer.files
       Array.from(files).forEach(async element => {
-        if (element.size > 20971520) return // 限制 20 mb
+        // if (element.size > 20971520) return // 限制 20 mb
         const res = await readFileAsync(element)
         const fileObj = fromJS({
           filename: element.name,
           filedata: res,
-          isUploaded: false,
+          uploadStatus: 0,
           filesize: bytesToSize(element.size),
+          uploadProgress: 0,
         })
         dispatch(action.fileChange(fileObj))
       })

@@ -26,11 +26,11 @@ class UploadBoxCom extends PureComponent {
               timeout={400}
               classNames="filebox"
             >
-              <FileBox _isUploaded={!res.get('isUploaded')}>
+              <FileBox _isUploaded={res.get('uploadStatus')!==2}>
                 <CSSTransition
                   timeout={400}
                   classNames="closebutton"
-                  in={!res.get('isUploaded')}
+                  in={res.get('uploadStatus')===0}
                 >
                   <CloseButton onClick={() => handleFileRemove(index)} />
                 </CSSTransition>
@@ -39,7 +39,7 @@ class UploadBoxCom extends PureComponent {
                   <FileSize>{res.get('filesize')}</FileSize>
                 </FileInfo>
                 {
-                  res.get('isUploaded') ? <UndoButton onClick={() => handleFileUndo(index)} /> : <UploadButton onClick={() => handleFileUpload(res, index)} />
+                  res.get('uploadStatus') === 0 ?  <UploadButton onClick={() => handleFileUpload(res, index)} /> : <UndoButton onClick={() => handleFileUndo(index)} /> 
                 }
               </FileBox>
             </CSSTransition>

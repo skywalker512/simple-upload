@@ -1,4 +1,4 @@
-export default (type='GET', url, data) => new Promise((reslove, reject) => {
+export default (type='GET', url, data, uploadListener) => new Promise((reslove, reject) => {
   const xhr = new XMLHttpRequest()
   xhr.open(type, `http://localhost:5129${url}`, true)
   xhr.timeout = 5000 // 超时时间，单位是毫秒
@@ -7,6 +7,9 @@ export default (type='GET', url, data) => new Promise((reslove, reject) => {
     xhr.setRequestHeader('content-type', 'application/json')
     sendData = JSON.stringify(data)
     xhr.timeout = 20000
+  }
+  if (uploadListener) {
+    xhr.upload.onprogress = uploadListener
   }
   xhr.ontimeout = function () {
     reject('请求超时')

@@ -23,6 +23,12 @@ export const finishUpload = (index) => ({
   index,
 })
 
+export const uploadProgress = (index, percent) => ({
+  type: constants.UPLOAD_PROGRESS,
+  index,
+  percent,
+})
+
 export const finishFileUndo = (index) => ({
   type: constants.FINISH_FILE_UNDO,
   index,

@@ -18,11 +18,13 @@ export default (state = defaultState, action) => {
     case constants.FILE_REMOVE:
       return state.deleteIn(['file', action.index])
     case constants.START_UPLOAD:
-      return state.setIn(['file', action.index, 'isUploaded'], false)
+      return state.setIn(['file', action.index, 'uploadStatus'], 1)
     case constants.FINISH_UPLOAD:
-      return state.setIn(['file', action.index, 'isUploaded'], true)
+      return state.setIn(['file', action.index, 'uploadStatus'], 2)
     case constants.FINISH_FILE_UNDO:
-      return state.setIn(['file', action.index, 'isUploaded'], false)
+      return state.setIn(['file', action.index, 'uploadStatus'], 0)
+    case constants.UPLOAD_PROGRESS:
+      return state.setIn(['file', action.index, 'uploadProgress'], action.percent)
     default:
       return state
   }

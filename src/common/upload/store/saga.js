@@ -3,10 +3,20 @@ import ajax from '@/utils/ajax'
 import * as constants from './constants'
 import * as actionCreater  from './action'
 
+// call 可以返回一个 Generator 函数, 也可以是一个返回 Promise 或任意其它值的普通函数, 所以这里可以使用 await
+function* fileUploader(action) {
+  // call(ajax, 'POST', '/upload', action.res.toJS()).the
+  yield ajax('POST', '/upload', action.res.toJS(), function* (e) {
+    const percent = Math.floor((e.loaded/e.total)*100)
+    console.log(2)
+    yield put(actionCreater.uploadProgress(action.index, percent))
+  })
+}
+
 function* fileUpload (action) {
   try {
     yield put(actionCreater.startUpload(action.index))
-    yield call(ajax, 'POST', '/upload', action.res.toJS())
+    yield call(fileUploader, action)
     yield put(actionCreater.finishUpload(action.index))
   } catch (error) {
     console.log(error)
