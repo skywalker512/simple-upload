@@ -27,31 +27,26 @@ class UploadBoxCom extends PureComponent {
               timeout={400}
               classNames="filebox"
             >
-            <Progress _progress={res.get('uploadProgress')} >
-              <FileBox>
-                
-                <CSSTransition
-                  timeout={400}
-                  classNames="closebutton"
-                  in={res.get('uploadStatus') === 0}
-                >
-                  <CloseButton onClick={() => handleFileRemove(index)} />
-                </CSSTransition>
-                <FileInfo>
-                  <FileTitle>{res.get('filename')}</FileTitle>
-                  <FileSize>{res.get('filesize')} </FileSize>
-                </FileInfo>
-                {/* { res.get('uploadStatus') === 0 ? <UploadButton onClick={() => handleFileUpload(res, index)} /> : null }
-                { res.get('uploadStatus') === 1 ? <p>{res.get('uploadProgress') } %</p> : null }
-                { res.get('uploadStatus') === 2 ? <UndoButton onClick={() => handleFileUndo(index)} />  : null } */}
-                <CSSTransition timeout={400} classNames="statusbutton" in={res.get('uploadStatus') === 0} unmountOnExit>
-                  <UploadButton onClick={() => handleFileUpload(res, index)} />
-                </CSSTransition>
-                <CSSTransition timeout={400} classNames="statusbutton" in={res.get('uploadStatus') === 2} unmountOnExit>
-                  <UndoButton onClick={() => handleFileUndo(index)} />
-                </CSSTransition>
-              </FileBox>
-            </Progress>
+              <Progress _progress={res.get('uploadProgress')} >
+                <FileBox>
+
+                  <CSSTransition timeout={400} classNames="button" in={res.get('uploadStatus') === 0}
+                  >
+                    <CloseButton onClick={() => handleFileRemove(index)} />
+                  </CSSTransition>
+                  <FileInfo>
+                    <FileTitle>{res.get('filename')}</FileTitle>
+                    <FileSize>{res.get('filesize')} </FileSize>
+                  </FileInfo>
+                  <CSSTransition timeout={400} classNames="button" in={res.get('uploadStatus') === 0} unmountOnExit>
+                    <UploadButton onClick={() => handleFileUpload(res, index)} />
+                  </CSSTransition>
+                  {res.get('uploadStatus') === 1 ? <p>{res.get('uploadProgress')} %</p> : null}
+                  <CSSTransition timeout={400} classNames="button" in={res.get('uploadStatus') === 2} unmountOnExit>
+                    <UndoButton onClick={() => handleFileUndo(index)} />
+                  </CSSTransition>
+                </FileBox>
+              </Progress>
             </CSSTransition>
 
           ))

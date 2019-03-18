@@ -24,55 +24,29 @@ const Button = styled.div`
       border-color: #fff;
     }
   }
-  &.closebutton-enter {
+  &.button-enter {
     height: 0;
     width: 0;
     opacity: 0.01;
   }
-  &.closebutton-enter-active {
+  &.button-enter-active {
     height: 30px;
     width: 30px;
     opacity: 1;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  &.closebutton-exit {
+  &.button-exit {
     height: 30px;
     width: 30px;
     opacity: 1;
   }
-  &.closebutton-exit-active {
+  &.button-exit-active {
     height: 0;
     width: 0;
     opacity: 0.01;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  &.closebutton-exit-done {
-    display: none;
-  }
-
-  &.statusbutton-enter {
-    height: 0;
-    width: 0;
-    opacity: 0.01;
-  }
-  &.statusbutton-enter-active {
-    height: 30px;
-    width: 30px;
-    opacity: 1;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  &.statusbutton-exit {
-    height: 30px;
-    width: 30px;
-    opacity: 1;
-  }
-  &.statusbutton-exit-active {
-    height: 0;
-    width: 0;
-    opacity: 0.01;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  &.statusbutton-exit-done {
+  &.button-exit-done {
     display: none;
   }
 `
