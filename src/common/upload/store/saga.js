@@ -1,4 +1,4 @@
-import { takeLeading, all, put, fork, call, take } from 'redux-saga/effects'
+import { takeLeading, all, put, fork, take } from 'redux-saga/effects'
 import { eventChannel, END } from 'redux-saga'
 import ajax from '@/utils/ajax'
 import * as constants from './constants'
