@@ -159,10 +159,3 @@ export const UndoButton = styled(Button).attrs({
 })`
   justify-items: flex-end;
 `
-
-export const UploadCircle = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-`
