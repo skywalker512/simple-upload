@@ -22,7 +22,7 @@ export default (state = defaultState, action) => {
     case constants.FINISH_UPLOAD:
       return state.setIn(['file', action.index, 'uploadStatus'], 2)
     case constants.FINISH_FILE_UNDO:
-      return state.setIn(['file', action.index, 'uploadStatus'], 0)
+      return state.setIn(['file', action.index, 'uploadStatus'], 0).setIn(['file', action.index, 'uploadProgress'], 0)
     case constants.UPLOAD_PROGRESS:
       return state.setIn(['file', action.index, 'uploadProgress'], action.percent)
     default:

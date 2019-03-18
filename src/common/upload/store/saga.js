@@ -17,7 +17,7 @@ function createAsyncTaskRunnerForUpload(action) {
     // subscriber 必须返回一个 unsubscribe 函数
     // unsubscribe 将在 saga 调用 `channel.close` 或者 emit(END) 时被调用, END 来自于 import { END } from 'redux-saga'
     // 完成 之后将 进度设置成 0
-    return () => { emitter(0) }
+    return () => {}
   })
 }
 

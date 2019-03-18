@@ -16,13 +16,64 @@ const Button = styled.div`
     font-size: 22px;
     color: #fff;
     transition: border-color 0.2s;
-    border: 1.5px solid #767b8b;
+    border: 1.5px solid transparent;
     cursor: pointer;
   }
   &:hover {
     &::before {
       border-color: #fff;
     }
+  }
+  &.closebutton-enter {
+    height: 0;
+    width: 0;
+    opacity: 0.01;
+  }
+  &.closebutton-enter-active {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &.closebutton-exit {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+  }
+  &.closebutton-exit-active {
+    height: 0;
+    width: 0;
+    opacity: 0.01;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &.closebutton-exit-done {
+    display: none;
+  }
+
+  &.statusbutton-enter {
+    height: 0;
+    width: 0;
+    opacity: 0.01;
+  }
+  &.statusbutton-enter-active {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &.statusbutton-exit {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+  }
+  &.statusbutton-exit-active {
+    height: 0;
+    width: 0;
+    opacity: 0.01;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &.statusbutton-exit-done {
+    display: none;
   }
 `
 
@@ -60,14 +111,12 @@ export const UploadWrapper = styled.div`
   }
   .filebox-enter-active {
     height: 48px;
-    padding: 9px;
     margin: 14px 16px 0 16px;
     opacity: 1;
     transition: all 0.4s;
   }
   .filebox-exit {
     height: 48px;
-    padding: 9px;
     margin: 14px 16px 0 16px;
     opacity: 1;
   }
@@ -90,45 +139,39 @@ export const UploadTips = styled.div`
 `
 
 export const FileBox = styled.div`
-  margin: 14px 16px 0 16px;
+  position: absolute;
   box-sizing: border-box;
-  width: 256px;
-  height: 48px;
-  background-color: ${props => props._isUploaded ? '#767b8b': '#22a061'};
-  transition: background-color 0.4s;
+  width: 100%;
+  height: 100%;
   border-radius: 4px;
   display: flex;
   padding: 9px;
+  z-index: 102;
+`
+
+export const Progress = styled.div`
+  position: relative;
+  margin: 14px 16px 0 16px;
+  width: 256px;
+  height: 48px;
+  background-color: #767b8b;
+  border-radius: 4px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: ${props => props._progress}%;
+    height: 48px;
+    border-radius: 4px;
+    transition: width 0.4s;
+    background-color: #22a061;
+  }
 `
 
 export const CloseButton = styled(Button).attrs({
   className: 'icon-remove'
 })`
-  &.closebutton-enter {
-    height: 0;
-    width: 0;
-    opacity: 0.01;
-  }
-  &.closebutton-enter-active {
-    height: 30px;
-    width: 30px;
-    opacity: 1;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  &.closebutton-exit {
-    height: 30px;
-    width: 30px;
-    opacity: 1;
-  }
-  &.closebutton-exit-active {
-    height: 0;
-    width: 0;
-    opacity: 0.01;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  &.closebutton-exit-done {
-    display: none;
-  }
 `
 export const FileInfo = styled.div`
   /* 放出剩余空间 */
