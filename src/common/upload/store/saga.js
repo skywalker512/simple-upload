@@ -9,7 +9,7 @@ function createAsyncTaskRunnerForUpload(action) {
   return eventChannel(emitter => {
     ajax('POST', '/upload', action.res.toJS(), function (e) {
       const percent = Math.floor((e.loaded / e.total) * 100)
-      emitter({ percent, action })
+      emitter(percent)
       if (percent === 100) {
         emitter(END)
       }
@@ -17,16 +17,8 @@ function createAsyncTaskRunnerForUpload(action) {
     // subscriber 必须返回一个 unsubscribe 函数
     // unsubscribe 将在 saga 调用 `channel.close` 或者 emit(END) 时被调用, END 来自于 import { END } from 'redux-saga'
     // 这里因为 eventChannel 没有任何其他消耗时间的操作, 所以这里 直接返回一个空函数
-    return () => {}
+    return () => { }
   })
-}
-
-
-function* watchOnProgress(chan) {
-  while (true) {
-    const { percent, action } = yield take(chan);
-    yield put(actionCreater.uploadProgress(action.index, percent))
-  }
 }
 
 
@@ -35,8 +27,15 @@ function* fileUploader(action) {
   try {
     const chan = createAsyncTaskRunnerForUpload(action)
     yield put(actionCreater.startUpload(action.index))
-    yield call(watchOnProgress, chan);
-    yield put(actionCreater.finishUpload(action.index))
+    // yield call(watchOnProgress, chan)
+    try {
+      while (true) {
+        const percent = yield take(chan);
+        yield put(actionCreater.uploadProgress(action.index, percent))
+      }
+    } finally {
+      yield put(actionCreater.finishUpload(action.index))
+    }
   } catch (err) {
     console.log(err)
   }
