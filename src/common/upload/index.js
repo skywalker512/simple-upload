@@ -26,14 +26,16 @@ class Upload extends PureComponent {
     e.preventDefault()
   }
   render() {
-    const { handleFileChange, handleFileDrop } = this.props
+    const { handleFileChange } = this.props
     const { file } = this.props
     return (
       <Fragment>
         <Input onChange={handleFileChange} />
-        <UploadWrapper _height={`${(file.size)*62+76}px`}>
+        <UploadWrapper
+          _height={`${(file.size) * 62 + 76}px`}
+        >
           <UploadBoxCom />
-          <Label onDrop={handleFileDrop}>
+          <Label onDrop={handleFileChange}>
             <UploadTips>
               Drag & Drop your files or Browse
             </UploadTips>
@@ -45,12 +47,12 @@ class Upload extends PureComponent {
   componentDidMount() {
     window.addEventListener('dragover', this.handleDrag)
     window.addEventListener('drop', this.handleDrag)
-	}
+  }
 
-	componentWillUnmount() {
+  componentWillUnmount() {
     window.removeEventListener('dragover', this.handleDrag)
     window.removeEventListener('drop', this.handleDrag)
-	}
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -63,7 +65,9 @@ const mapDispathToProps = (dispatch) => {
   return {
     handleFileChange(e) {
       // 转换成数组
-      Array.from(e.target.files).forEach(async element => {
+      e.preventDefault()
+      const files = e.target.files || e.dataTransfer.files
+      Array.from(files).forEach(async element => {
         if (element.size > 20971520) return // 限制 20 mb
         const res = await readFileAsync(element)
         const fileObj = fromJS({
@@ -75,10 +79,6 @@ const mapDispathToProps = (dispatch) => {
         dispatch(action.fileChange(fileObj))
       })
     },
-    handleFileDrop(e) {
-      e.preventDefault()
-      console.log(e.dataTransfer.files)
-    }
   }
 }
 
