@@ -38,9 +38,9 @@ class UploadBoxCom extends PureComponent {
                   <FileTitle>{res.get('filename')}</FileTitle>
                   <FileSize>{res.get('filesize')}</FileSize>
                 </FileInfo>
-                {
-                  res.get('uploadStatus') === 0 ?  <UploadButton onClick={() => handleFileUpload(res, index)} /> : <UndoButton onClick={() => handleFileUndo(index)} /> 
-                }
+                { res.get('uploadStatus') === 0 ? <UploadButton onClick={() => handleFileUpload(res, index)} /> : null }
+                { res.get('uploadStatus') === 1 ? <p>{res.get('uploadProgress') } %</p> : null }
+                { res.get('uploadStatus') === 2 ? <UndoButton onClick={() => handleFileUndo(index)} />  : null }
               </FileBox>
             </CSSTransition>
 
