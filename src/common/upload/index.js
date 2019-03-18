@@ -13,16 +13,27 @@ import {
   Label,
   UploadTips,
   UploadWrapper,
+  UploadCircle,
 } from './style'
 
 class Upload extends PureComponent {
   constructor(props) {
     super(props)
     this.handleDrag = this.handleDrag.bind(this)
+    this.handlMouseMove = this.handlMouseMove.bind(this)
   }
   handleDrag(e) {
     e.stopPropagation()
     e.preventDefault()
+  }
+  handlMouseMove(e) {
+    // https://stackoverflow.com/questions/31519758/reacts-mouseevent-doesnt-have-offsetx-offsety
+    if (e.nativeEvent.offsetY > 5 && e.nativeEvent.offsetX > 5 ) {
+      console.log(e.nativeEvent.offsetY)
+      this.uploadCircle.style.top = e.nativeEvent.offsetY+'px'
+      this.uploadCircle.style.left = e.nativeEvent.offsetX+'px'
+    }
+    
   }
   render() {
     const { handleFileChange, handleFileDrop } = this.props
@@ -30,12 +41,13 @@ class Upload extends PureComponent {
     return (
       <Fragment>
         <Input onChange={handleFileChange} />
-        <UploadWrapper _height={`${(file.size)*62+76}px`}>
+        <UploadWrapper _height={`${(file.size)*62+76}px`} onDragOver={this.handlMouseMove}>
           <UploadBoxCom />
           <Label onDrop={handleFileDrop}>
             <UploadTips>
               Drag & Drop your files or Browse
             </UploadTips>
+            <UploadCircle ref={uploadCircle => this.uploadCircle = uploadCircle}/>
           </Label>
         </UploadWrapper>
       </Fragment>

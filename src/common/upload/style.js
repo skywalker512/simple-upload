@@ -36,7 +36,9 @@ export const Input = styled.input.attrs({
 `
 export const Label = styled.label.attrs({
   htmlFor: inputId
-})``
+})`
+  position: relative;
+`
 
 export const UploadWrapper = styled.div`
   transition: height 0.4s;
@@ -156,4 +158,11 @@ export const UndoButton = styled(Button).attrs({
   className: 'icon-undo'
 })`
   justify-items: flex-end;
+`
+
+export const UploadCircle = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
 `
