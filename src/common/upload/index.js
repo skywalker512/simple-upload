@@ -13,7 +13,6 @@ import {
   Label,
   UploadTips,
   UploadWrapper,
-  UploadCircle,
 } from './style'
 
 class Upload extends PureComponent {
