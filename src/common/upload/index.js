@@ -20,7 +20,6 @@ class Upload extends PureComponent {
   constructor(props) {
     super(props)
     this.handleDrag = this.handleDrag.bind(this)
-    this.handlMouseMove = this.handlMouseMove.bind(this)
   }
   handleDrag(e) {
     e.stopPropagation()
