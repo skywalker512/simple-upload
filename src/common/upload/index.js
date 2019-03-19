@@ -17,22 +17,27 @@ import {
 
 class Upload extends PureComponent {
   //  public class fields 语法
+  // drag 返回的 e 不一样 
+  constructor (props) {
+    super(props)
+    this.uploadTips = React.createRef();
+  }
   handleDrag = e => {
-    e.stopPropagation()
     e.preventDefault()
+    e.dataTransfer.dropEffect = e.target === this.uploadTips.current ?  'copy' : 'none'
   }
   render() {
     const { handleFileChange } = this.props
     const { file } = this.props
     return (
       <Fragment>
-        <Input onChange={handleFileChange} />
+        <Input onChange={handleFileChange}/>
         <UploadWrapper
           _height={`${(file.size) * 62 + 76}px`}
         >
           <UploadBoxCom />
           <Label onDrop={handleFileChange}>
-            <UploadTips>
+            <UploadTips ref={this.uploadTips}>
               Drag & Drop your files or Browse
             </UploadTips>
           </Label>
