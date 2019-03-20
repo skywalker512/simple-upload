@@ -53,3 +53,11 @@ https://github.com/skywalker512/simple-koa
 https://pqina.nl/filepond
 
 动画没有照抄，因为做不了这么好
+
+
+  - [x] 能上传图片
+
+  - [x] 能显示上传进度条
+  - [x] 能上传大文件（如视频等）
+  - [x] 实现分片上传
+  - [ ] 断点续传
