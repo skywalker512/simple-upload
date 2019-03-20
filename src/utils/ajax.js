@@ -1,11 +1,13 @@
-export default (type='GET', url, data, contentType , uploadListener) => new Promise((reslove, reject) => {
+export default (type='GET', url, data, contentType=null , uploadListener) => new Promise((reslove, reject) => {
   const xhr = new XMLHttpRequest()
   xhr.open(type, `http://localhost:5129${url}`, true)
   xhr.timeout = 5000 // 超时时间，单位是毫秒
-  let sendData = null
+  let sendData
   if (type === 'POST') {
-    xhr.setRequestHeader('content-type', contentType)
-    sendData = JSON.stringify(data)
+    console.log(contentType)
+    if(contentType) xhr.setRequestHeader('content-type', contentType)
+    if(contentType === 'application/json') sendData = JSON.stringify(data)
+    else sendData = data
     xhr.timeout = 20000
   }
   if (uploadListener) {

@@ -9,7 +9,7 @@ import * as selectors from './selectors'
 // 修改函数, 相当于 saga 提供了一个 同步方案, 通过 emitter 来控制状态
 function createAsyncTaskRunnerForUpload(resource, key, step) {
   return eventChannel(emitter => {
-    ajax('POST', `/upload/data/${key}/${step}`, resource, 'text/plain', function (e) {
+    ajax('POST', `/upload/data/${key}/${step}`, resource, null, function (e) {
       const percent = Math.floor((e.loaded / e.total) * 100)
       emitter(percent)
       if (percent === 100) {
@@ -79,7 +79,8 @@ function* fileUploader(action, resource, key, step) {
 
 function* fileUndo(action) {
   try {
-    // yield call(ajax, 'POST', '/undo', action.res.toJS())
+    const file = yield select(selectors.fileSelector, action.index)
+    yield call(ajax, 'POST', '/upload/undo', file.toJS(), 'application/json')
     yield put(actionCreater.finishFileUndo(action.index))
   } catch (error) {
     console.log(error)

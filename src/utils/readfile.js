@@ -3,11 +3,11 @@ export default (file, step=1) => {
     const reader = new FileReader();
 
     reader.onload = () => {
-      resolve(reader.result);
-    };
+      resolve(reader.result)
+    }
 
     reader.onerror = reject;
 
-    reader.readAsDataURL(file.slice(0, step*3145728));
+    reader.readAsBinaryString(file.slice((step-1)*3145728, step*3145728))
   })
 }
