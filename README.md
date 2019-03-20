@@ -47,3 +47,9 @@
 ### 后台
 
 https://github.com/skywalker512/simple-koa
+
+### 界面
+自己没有艺术细胞，界面照抄
+https://pqina.nl/filepond
+
+动画没有照抄，因为做不了这么好
