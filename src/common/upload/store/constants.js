@@ -9,3 +9,5 @@ export const UPLOAD_PROGRESS = 'common/hero/UPLOAD_PROGRESS'
 // 发往 saga 的
 export const FILE_UNDO = 'common/hero/saga/FILE_UNDO'
 export const FILE_UPLOAD = 'common/hero/saga/FILE_UPLOAD'
+export const FILE_STEP = 'common/hero/saga/FILE_STEP'
+export const FILE_END = 'common/hero/saga/FILE_END'

@@ -39,7 +39,7 @@ class UploadBoxCom extends PureComponent {
                     <FileSize>{res.get('filesize')} </FileSize>
                   </FileInfo>
                   <CSSTransition timeout={400} classNames="button" in={res.get('uploadStatus') === 0} unmountOnExit>
-                    <UploadButton onClick={() => handleFileUpload(res, index)} />
+                    <UploadButton onClick={() => handleFileUpload(index)} />
                   </CSSTransition>
                   {res.get('uploadStatus') === 1 ? <p>{res.get('uploadProgress')} %</p> : null}
                   <CSSTransition timeout={400} classNames="button" in={res.get('uploadStatus') === 2} unmountOnExit>

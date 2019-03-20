@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { action } from './store'
 import { fromJS } from 'immutable'
 
-import readFileAsync from '@/utils/readfile'
+// import readFileAsync from '@/utils/readfile'
 import bytesToSize from '@/utils/bytesToSize'
 
 import UploadBoxCom from './components/uploadBox'
@@ -69,14 +69,16 @@ const mapDispathToProps = (dispatch) => {
       e.preventDefault()
       const files = e.target.files || e.dataTransfer.files
       Array.from(files).forEach(async element => {
-        // if (element.size > 20971520) return // 限制 20 mb
-        const res = await readFileAsync(element)
+        if (element.size > 20971520) return // 限制 20 mb
         const fileObj = fromJS({
           filename: element.name,
-          filedata: res,
+          filedata: element,
           uploadStatus: 0,
           filesize: bytesToSize(element.size),
           uploadProgress: 0,
+          step: 1,
+          totalStep: Math.ceil(element.size/3145728),
+          key: Math.random().toString(36).substr(2,6),
         })
         dispatch(action.fileChange(fileObj))
       })

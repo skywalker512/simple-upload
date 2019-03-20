@@ -36,9 +36,8 @@ export const finishFileUndo = (index) => ({
 
 
 // 发往 saga 的
-export const fileUpload = (res, index) => ({
+export const fileUpload = (index) => ({
   type: constants.FILE_UPLOAD,
-  res,
   index,
 })
 
@@ -48,3 +47,13 @@ export const fileUndo = (index) => ({
   index,
 })
 
+export const fileStep = (index, step) => ({
+  type: constants.FILE_STEP,
+  index,
+  step,
+})
+
+export const fileEnd = (index) => ({
+  type: constants.FILE_END,
+  index,
+})
